@@ -1,0 +1,13 @@
+nav {
+  &.app-header {
+    height: auto;
+  }
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+    &.active {
+      color: #1ba94c;
+    }
+  }
+}

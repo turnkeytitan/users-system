@@ -2,3 +2,12 @@
   Recuerde conservar los id, no deben ser modificados
   ids = nav-bar__btn-list-user, nav-bar__btn-create-user, nav-bar__btn-logout
 -->
+<header class="card">
+  <nav class="app-header flex justify-content-between wrap">
+    <section>
+      <a id="nav-bar__btn-list-user" class="button text" routerLink="./list" routerLinkActive="active">Listar usuario</a>
+      <a id="nav-bar__btn-create-user" class="button text" routerLink="./create" routerLinkActive="active">Crear usuario</a>
+    </section>
+    <section><a id="nav-bar__btn-logout" class="button text" (click)="logout()">Cerrar sesión</a></section>
+  </nav>
+</header>

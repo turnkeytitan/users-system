@@ -2,3 +2,35 @@
   Recuerde conservar los id, no deben ser modificados
   ids = login__email, login__password, login__password-error, login__email-error, login__btn-login
 -->
+<section class="card flex align-items-center justify-content-center">
+  <form
+    (submit)="login()"
+    class="layout-column justify-content-center align-items-center"
+    [formGroup]="form"
+  >
+    <div class="field flex justify-content-between align-items-center">
+      <label for="login__email">Email</label
+      ><input id="login__email" type="text" formControlName="email" />
+    </div>
+    <span
+      class="text"
+      *ngIf="form.controls.email.errors?.required && form.controls.email.dirty"
+      id="login__email-error"
+      >Email is required</span
+    >
+    <div class="field flex justify-content-between align-items-center">
+      <label for="login__password">Username</label
+      ><input id="login__password" type="password" formControlName="password" />
+    </div>
+    <span
+      class="text"
+      *ngIf="form.controls.password.errors?.required && form.controls.password.dirty"
+      id="login__password-error"
+      >Password is required</span
+    >
+    <span class="text" *ngIf="form.controls.password.errors?.minlength" id="login__password-error"
+      >The minimum of characters will be 8</span
+    >
+    <button type="submit" id="login__btn-login">Log in</button>
+  </form>
+</section>
