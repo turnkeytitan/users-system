@@ -8,15 +8,15 @@
       <label for="user-create__name">Email</label
       ><input id="user-create__name" type="text" formControlName="name" />
     </div>
-    <div class="error" id="user-create__name-error"
-      >Name is required</div
+    <div *ngIf="name.errors && name.dirty" class="error"
+      ><p id="user-create__name-error">Name is required</p></div
     >
     <div class="field flex justify-content-between align-items-center">
       <label for="user-create__job">Username</label
       ><input id="user-create__job" type="password" formControlName="job" />
     </div>
-    <div class="error" id="user-create__job-error"
-      >Job is required</div
+    <div *ngIf="job.errors && job.dirty" class="error"
+      ><p id="user-create__job-error">Job is required</p></div
     >
     <button
       type="button"
