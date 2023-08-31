@@ -15,5 +15,8 @@ section {
         flex: 0 1 50%;
       }
     }
+    .error {
+      color: var(--error-color);
+    }
   }
 }

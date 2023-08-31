@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../shared/services/login/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TokenObject } from '../shared/interfaces/token.interface';
 
 @Component({
   selector: 'app-login',
@@ -17,18 +16,18 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
-      // email: ['', Validators.required],
-      // password: ['', [Validators.required, Validators.minLength(8)]],
-      email: ['eve.holt@reqres.in', Validators.required],
-      password: ['cityslicka', [Validators.required, Validators.minLength(8)]],
+      email: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      // email: ['eve.holt@reqres.in', Validators.required],
+      // password: ['cityslicka', [Validators.required, Validators.minLength(8)]],
     });
   }
   ngOnInit(): void {
     localStorage.getItem('token') && this.redirectUsers();
   }
   async login() {
-    const loginResponse = await this.loginService.login(this.form.value);
     try {
+      const loginResponse = await this.loginService.login(this.form.value);
       loginResponse.token && localStorage.setItem('token', loginResponse.token);
       this.redirectUsers();
     } catch (error) {
@@ -41,5 +40,12 @@ export class LoginComponent implements OnInit {
    * */
   public redirectUsers(): void {
     this.router.navigateByUrl('/users/list');
+  }
+
+  get email() {
+    return this.form.controls.email;
+  }
+  get password(){
+    return this.form.controls.password;
   }
 }

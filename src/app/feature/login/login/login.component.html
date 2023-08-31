@@ -3,19 +3,12 @@
   ids = login__email, login__password, login__password-error, login__email-error, login__btn-login
 -->
 <section class="card flex align-items-center justify-content-center">
-  <form
-    (submit)="login()"
-    class="layout-column justify-content-center align-items-center"
-    [formGroup]="form"
-  >
+  <form class="layout-column justify-content-center align-items-center" [formGroup]="form">
     <div class="field flex justify-content-between align-items-center">
       <label for="login__email">Email</label
       ><input id="login__email" type="text" formControlName="email" />
     </div>
-    <span
-      class="text"
-      *ngIf="form.controls.email.errors?.required && form.controls.email.dirty"
-      id="login__email-error"
+    <span class="error" *ngIf="email.errors?.required && email.dirty" id="login__email-error"
       >Email is required</span
     >
     <div class="field flex justify-content-between align-items-center">
@@ -23,14 +16,20 @@
       ><input id="login__password" type="password" formControlName="password" />
     </div>
     <span
-      class="text"
-      *ngIf="form.controls.password.errors?.required && form.controls.password.dirty"
+      class="error"
+      *ngIf="password.errors && password.dirty"
       id="login__password-error"
-      >Password is required</span
+      >{{
+        password.errors.required ? 'Password is required' : 'The minimum of characters will be 8'
+      }}</span
     >
-    <span class="text" *ngIf="form.controls.password.errors?.minlength" id="login__password-error"
-      >The minimum of characters will be 8</span
+    <button
+      type="button"
+      [disabled]="email.errors || password.errors"
+      (click)="login()"
+      id="login__btn-login"
     >
-    <button type="submit" id="login__btn-login">Log in</button>
+      Log in
+    </button>
   </form>
 </section>

@@ -1,0 +1,3 @@
+<div *ngIf="toast | async as toasty" class="toast" [ngClass]="toasty.type" (click)="closeToast()">
+  <p>{{ toasty.message }}</p>
+</div>

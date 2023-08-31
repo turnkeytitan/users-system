@@ -2,3 +2,29 @@
   Recuerde conservar los id, no deben ser modificados
   ids = user-create__name, user-create__name-error, user-create__job, user-create__job-error, user-create__btn-create
 -->
+<section class="card flex align-items-center justify-content-center">
+  <form class="layout-column justify-content-center align-items-center" [formGroup]="form">
+    <div class="field flex justify-content-between align-items-center">
+      <label for="user-create__name">Email</label
+      ><input id="user-create__name" type="text" formControlName="name" />
+    </div>
+    <div class="error" id="user-create__name-error"
+      >Name is required</div
+    >
+    <div class="field flex justify-content-between align-items-center">
+      <label for="user-create__job">Username</label
+      ><input id="user-create__job" type="password" formControlName="job" />
+    </div>
+    <div class="error" id="user-create__job-error"
+      >Job is required</div
+    >
+    <button
+      type="button"
+      [disabled]="form.invalid"
+      (click)="createUser()"
+      id="user-create__btn-create"
+    >
+      Create
+    </button>
+  </form>
+</section>

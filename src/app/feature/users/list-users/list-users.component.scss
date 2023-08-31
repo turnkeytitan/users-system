@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .filter {
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  table td {
+    text-align: center;
+  }
+}
