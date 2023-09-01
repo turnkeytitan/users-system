@@ -7,8 +7,8 @@ export interface UserList {
 }
 export interface User {
   id: number;
-  email: 'string';
-  first_name: 'string';
-  last_name: 'string';
-  avatar: 'string';
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
 }
