@@ -9,12 +9,12 @@
   },
   "files": [
     "src/test.ts",
-    "hacker-rank/test.ts",
+    "hacker-rank2/test.ts",
     "src/polyfills.ts"
   ],
   "include": [
     "src/**/*.spec.ts",
-    "hacker-rank/**/*.spec.ts",
+    "hacker-rank2/**/*.spec.ts",
     "src/**/*.d.ts"
   ]
 }
