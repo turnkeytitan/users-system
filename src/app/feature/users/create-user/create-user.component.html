@@ -20,7 +20,7 @@
     >
     <button
       type="button"
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || name.value.trim()===''"
       (click)="createUser()"
       id="user-create__btn-create"
     >
