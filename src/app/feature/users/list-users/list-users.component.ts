@@ -10,7 +10,7 @@ import { ToastService } from '@core/services/toast.service';
 })
 export class ListUsersComponent implements OnInit {
   users: User[];
-  filter: string;
+  filter: string = '';
 
   constructor(private usersService: UsersService, private toastService: ToastService) {
     this.users = [];
@@ -35,7 +35,7 @@ export class ListUsersComponent implements OnInit {
       this.toastService.showToast({
         type: 'success',
         message: `User ${
-          this.users.find((user) => user.id === index).first_name
+          this.users.find((user) => user.id === index)?.first_name
         } deleted successfully`,
       });
       this.users = this.users.filter((user) => user.id !== index);

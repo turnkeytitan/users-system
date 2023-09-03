@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent {
-  toast: Observable<Toast>;
+  toast: Observable<Toast | null>;
   constructor(private toastService: ToastService) {
     this.toast = this.toastService.getToast();
   }

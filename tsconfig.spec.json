@@ -1,6 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine",
@@ -9,12 +11,10 @@
   },
   "files": [
     "src/test.ts",
-    "hacker-rank2/test.ts",
     "src/polyfills.ts"
   ],
   "include": [
     "src/**/*.spec.ts",
-    "hacker-rank2/**/*.spec.ts",
     "src/**/*.d.ts"
   ]
 }

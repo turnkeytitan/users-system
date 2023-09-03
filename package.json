@@ -8,8 +8,7 @@
     "start": "ng serve --host 0.0.0.0 --port 8000 --disable-host-check",
     "start:dev": "ng serve",
     "build": "ng build",
-    "test": "ng run Custom-list:hackerRank-test",
-    "test-local": "ng run Custom-list:test",
+    "test": "ng test",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -44,7 +43,6 @@
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-jasmine": "~4.0.1",
-    "karma-junit-reporter": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "mocha": "~8.3.2",
     "protractor": "^7.0.0",

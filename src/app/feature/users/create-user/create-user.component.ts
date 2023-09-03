@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from './shared/services/users/users.service';
 import { ToastService } from '@core/services/toast.service';
-import { NewUser } from './shared/interfaces/newUser.interface';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.scss'],
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent {
   form: FormGroup;
   constructor(
     private readonly router: Router,
@@ -18,8 +17,6 @@ export class CreateUserComponent implements OnInit {
     private usersService: UsersService,
     private toastService: ToastService,
   ) {
-  }
-  ngOnInit(): void {
     this.form = this.fb.group({
       name: ['', Validators.required],
       job: ['', Validators.required],

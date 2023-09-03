@@ -1,54 +1,33 @@
-# Customer List
+# User Management App README
 
-## Environment 
+## Introduction
+
+The User Management App is a simple web-based application designed to manage user accounts. It allows administrators to perform basic user management tasks, including user login, viewing the list of existing users, deleting user accounts, and creating new user accounts.
+
+## Features
+
+### User Login
+
+The User Management App provides a secure login system where users with administrative privileges can log in to access the app's features. The login process ensures that only authorized individuals can manage user accounts.
+
+### User List
+
+Upon successful login, administrators are presented with a user list page. This page displays a comprehensive list of all existing user accounts, including essential information such as usernames, email addresses, and other relevant details. Administrators can easily browse and search for specific users within this list.
+
+### User Deletion
+
+Administrators have the capability to delete user accounts from the system. To delete a user, an administrator can select the user from the list and initiate the deletion process. A confirmation dialog may appear to ensure that the deletion action is intentional to prevent accidental deletions.
+
+### User Creation
+
+Administrators can create new user accounts through a dedicated user creation form. This form allows administrators to input essential user details such as username, email address, password, and any additional information required for the application. User creation also includes validation checks to ensure data integrity and security.
+
+## Getting Started
+
+### Environment 
 - Angular CLI Version: 10.0.4
 - Angular Core Version: 10.0.4
 - Node Version: 12(LTS)
-- Default Port: 8000
 
-## Application Demo:
-
-![](https://hrcdn.net/s3_pub/istreet-assets/HnPUXnW8Mhml5W2AHvkNKQ/customer-list.gif)
-
-## Functionality Requirements
-
-The component must have the following functionalities:
-
-- The input should initially be empty.
-
-- If no value is entered, clicking on the `Add Customer` button should not do anything.
-
-- If a value is present, clicking on the `Add Customer` button should add the input value to the list below. For this, add `<li>{input}</li>` to the `<ul data-test-id="customer-list">` element.
-
-- After adding the value to the list, clear the value of the input box.
-
-- Please note that the customer list `<ul>` element should only be rendered if it has at least one customer added (i.e., at least one `<li>` child). So initially, when the app is mounted, the `<ul>` element should not be rendered since no customers have been added.
-
-- All the values added by the button should be rendered in the list below.
-
-## Testing Requirements
-
-- The input should have the data-test-id attribute `app-input`.
-- The button should have the data-test-id attribute `submit-button`.
-- The customer list `<ul>` should have the data-test-id attribute `customer-list`.
-- Elements in the list should have the data-test-id attribute as `list-item0`, `list-item1`, `list-item2`, `list-item3`, and so on.
-
-## Project Specifications
-
-**Read Only Files**
-- src/app/app.component.spec.ts
-- src/app/customer-list/customer-list.component.spec.ts
-
-**Commands**
-- run: 
-```bash
-bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm start
-```
-- install: 
-```bash
-bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm install
-```
-- test: 
-```bash
-bash bin/env_setup && . $HOME/.nvm/nvm.sh && npm test
-```
+npm i
+npm run start:dev
