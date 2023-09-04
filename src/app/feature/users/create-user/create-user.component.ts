@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from './shared/services/users/users.service';
 import { ToastService } from '@core/services/toast.service';
@@ -10,10 +10,10 @@ import { ToastService } from '@core/services/toast.service';
   styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent {
-  form: FormGroup;
+  form: UntypedFormGroup;
   constructor(
     private readonly router: Router,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private usersService: UsersService,
     private toastService: ToastService,
   ) {
