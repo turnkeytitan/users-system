@@ -8,9 +8,8 @@ describe('HomeUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeUserComponent ]
-    })
-    .compileComponents();
+      declarations: [HomeUserComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,4 +18,7 @@ describe('HomeUserComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should create component', () => {
+    expect(component).toBeTruthy();
+  });
 });

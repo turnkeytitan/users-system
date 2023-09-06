@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@feature/users/create-user/shared/services/users/users.service';
-import { User } from '@feature/users/create-user/shared/interfaces/userList.interface';
+import { User, UserList } from '@feature/users/create-user/shared/interfaces/userList.interface';
 import { ToastService } from '@core/services/toast.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'list-users',
@@ -11,6 +12,8 @@ import { ToastService } from '@core/services/toast.service';
 export class ListUsersComponent implements OnInit {
   users: User[];
   filter: string = '';
+  getUsers$: Subscription = Subscription.EMPTY;
+  deleteUser$: Subscription = Subscription.EMPTY;
 
   constructor(private usersService: UsersService, private toastService: ToastService) {
     this.users = [];
@@ -20,27 +23,25 @@ export class ListUsersComponent implements OnInit {
     this.getUsers();
   }
 
-  async getUsers() {
-    try {
-      const users = await this.usersService.getUsers();
-      this.users = users.data;
-    } catch (error) {
-      console.error(error);
-    }
+  getUsers() {
+    this.getUsers$ = this.usersService.getUsers().subscribe(this.handleUsersList.bind(this));
+  }
+  handleUsersList(users: UserList) {
+    this.users = users.data;
   }
 
-  async deleteUser(index: number) {
-    try {
-      await this.usersService.deleteUserForIndex(index);
-      this.toastService.showToast({
-        type: 'success',
-        message: `User ${
-          this.users.find((user) => user.id === index)?.first_name
-        } deleted successfully`,
-      });
-      this.users = this.users.filter((user) => user.id !== index);
-    } catch (error) {
-      console.error(error);
-    }
+  deleteUser(index: number) {
+    this.deleteUser$ = this.usersService
+      .deleteUserForIndex(index)
+      .subscribe(this.handleUserDeletion.bind(this, index));
+  }
+  handleUserDeletion(index: number) {
+    this.toastService.showToast({
+      type: 'success',
+      message: `User ${
+        this.users.find((user) => user.id === index)?.first_name
+      } deleted successfully`,
+    });
+    this.users = this.users.filter((user) => user.id !== index);
   }
 }

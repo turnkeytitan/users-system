@@ -1,42 +1,40 @@
-import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from './shared/services/users/users.service';
 import { ToastService } from '@core/services/toast.service';
+import { NewUserDTO } from '@core/models/newUserDTO.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.scss'],
 })
-export class CreateUserComponent {
-  form: UntypedFormGroup;
+export class CreateUserComponent implements OnDestroy {
+  form: FormGroup<{ name: FormControl<string>; job: FormControl<string> }> = this.fb.group({
+    name: ['', [Validators.required]],
+    job: ['', Validators.required],
+  });
+  createUser$: Subscription = Subscription.EMPTY;
   constructor(
     private readonly router: Router,
-    private fb: UntypedFormBuilder,
+    private fb: NonNullableFormBuilder,
     private usersService: UsersService,
     private toastService: ToastService,
-  ) {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      job: ['', Validators.required],
+  ) {}
+  createUser() {
+    this.createUser$ = this.usersService
+      .createUser(this.form.getRawValue())
+      .subscribe(this.handleCreation.bind(this));
+  }
+  handleCreation(user: NewUserDTO) {
+    this.toastService.showToast({
+      type: 'success',
+      message: `User ${user.name} created successfully`,
     });
+    this.redirectToListUsers();
   }
-  async createUser() {
-    try {
-      const users = await this.usersService.createUser(this.form.value);
-      this.toastService.showToast({
-        type: 'success',
-        message: `User ${users.name} created successfully`,
-      });
-      this.redirectToListUsers()
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  /**
-   * Este método no se puede modificar
-   * */
   public redirectToListUsers(): void {
     this.router.navigateByUrl('/users/list');
   }
@@ -45,5 +43,9 @@ export class CreateUserComponent {
   }
   get job() {
     return this.form.controls.job;
+  }
+
+  ngOnDestroy(): void {
+      this.createUser$.unsubscribe();
   }
 }
