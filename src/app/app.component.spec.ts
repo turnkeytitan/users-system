@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing'
+import { CoreModule } from '@core/core.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        FormsModule
+        FormsModule,
+        CoreModule
       ],
       declarations: [
         AppComponent

@@ -55,10 +55,6 @@ describe('FilterUserByNamePipe', () => {
     expect(pipe.transform(users, 'ge')).toEqual(users);
   });
   it('should filter users by name', () => {
-    console.log(
-      'asdfasdfasdf',
-      users.filter((user) => user.first_name.toLowerCase().includes('geo')),
-    );
 
     expect(pipe.transform(users, 'geo')).toEqual(
       users.filter((user) => user.first_name.toLowerCase().includes('geo')),

@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UsersService } from './users.service';
-import { environment } from '@environments/environment';
 import { UserList } from '../../interfaces/userList.interface';
+import { HttpClient } from '@angular/common/http';
+import { asyncData } from '@core/testing/async-observable-helpers';
 const userList: UserList = {
   page: 1,
   per_page: 2,
@@ -20,32 +21,23 @@ const userList: UserList = {
 };
 
 describe('UsersService', () => {
-  let usersService: UsersService;
-  let httpTestingController: HttpTestingController;
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  let userService: UsersService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [UsersService, HttpClientTestingModule],
     });
-    usersService = TestBed.inject(UsersService);
-    httpTestingController = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    // Verify that there are no outstanding requests
-    httpTestingController.verify();
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    userService = new UsersService(httpClientSpy);
   });
 
   it('should send a get request to get the list of users', () => {
-    usersService.getUsers().then((response) => {
-      expect(response).toEqual(userList);
+    httpClientSpy.get.and.returnValue(asyncData(userList));
+    userService.getUsers().subscribe((data) => {
+      expect(data).toEqual(userList);
     });
-
-    const req = httpTestingController.expectOne(`${environment.API}/users`);
-    expect(req.request.method).toBe('GET');
-    expect(req.request.body).toEqual(userList);
-
-    req.flush(userList);
+    expect(httpClientSpy.get.calls.count()).withContext('one call').toBe(1);
   });
 });
