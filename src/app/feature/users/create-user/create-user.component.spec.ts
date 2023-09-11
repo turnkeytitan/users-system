@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateUserComponent } from './create-user.component';
 import { UsersService } from './shared/services/users/users.service';
-import { ToastService } from '@core/services/toast.service';
+import { ToastService } from '@core/services/toast/toast.service';
 import { ListUsersComponent } from '../list-users/list-users.component';
 import { MockUsersService } from '@core/testing/mocks/users-service.mock';
 

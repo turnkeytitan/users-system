@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from './shared/services/users/users.service';
-import { ToastService } from '@core/services/toast.service';
+import { ToastService } from '@core/services/toast/toast.service';
 import { NewUserDTO } from '@core/models/newUserDTO.interface';
 import { Subscription } from 'rxjs';
 

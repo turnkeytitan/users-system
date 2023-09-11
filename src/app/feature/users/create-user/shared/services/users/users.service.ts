@@ -28,7 +28,7 @@ export class UsersService {
 
   deleteUserForIndex(index: number) {
     return this.http
-      .delete(`${this.url}/${index}2`)
+      .delete(`${this.url}/${index}`)
       .pipe(retry(1), timeout(5000), catchError(this.handleError<any>('deleteUserForIndex')));
   }
 

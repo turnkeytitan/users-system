@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@feature/users/create-user/shared/services/users/users.service';
 import { User, UserList } from '@feature/users/create-user/shared/interfaces/userList.interface';
-import { ToastService } from '@core/services/toast.service';
+import { ToastService } from '@core/services/toast/toast.service';
 import { Subscription } from 'rxjs';
 
 @Component({

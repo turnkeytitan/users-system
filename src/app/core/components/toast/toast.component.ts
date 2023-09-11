@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Toast } from '@core/interfaces/toast.interface';
-import { ToastService } from '@core/services/toast.service';
+import { ToastService } from '@core/services/toast/toast.service';
 import { Observable } from 'rxjs';
 
 @Component({
